@@ -1,0 +1,12 @@
+{
+  "name": "skinscan-proxy",
+  "version": "1.0.0",
+  "description": "SkinScan AI — Gemini proxy server for Shopify",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "devDependencies": {
+    "vercel": "^34.0.0"
+  }
+}
