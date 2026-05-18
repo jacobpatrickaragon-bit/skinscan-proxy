@@ -94,9 +94,9 @@ Customer quiz:
 
 Instructions:
 1. First, locate the face in the image. Report its bounding box in normalized image coordinates (0-1 where 0,0 is top-left and 1,1 is bottom-right).
-2. Evaluate ALL 10 specific skin concerns listed below. For each, score 0-100 where HIGHER = MORE PRONOUNCED/SEVERE concern (e.g., score 75 for "redness" = significant visible redness; score 15 = very little redness).
-3. For each concern, identify visible regions where it appears as normalized coordinates of the IMAGE (not the face crop). Return 1-4 regions per concern. If a concern is not visible, return score 10-25 and a single small region near the affected face area (e.g., under-eye for dark_circles, even if mild).
-4. Be honest and specific — not generic. Vary scores based on what you actually see.
+2. Evaluate ALL 10 specific skin concerns listed below. For each, score 0-100 where HIGHER = BETTER skin quality (LESS of that concern). So score 100 = perfect, no concern visible at all; score 50 = noticeable concern; score 20 = severe concern. Examples: very red face → redness score 35; clear skin with no redness → redness score 95.
+3. For each concern, identify visible regions where it appears as normalized coordinates of the IMAGE (not the face crop). Return 1-4 regions per concern. If a concern is NOT visible (score >= 95), return an empty regions array []. Otherwise return regions near the affected face area.
+4. Be honest and specific — vary scores based on what you actually see. Score 100 means truly no visible concern.
 5. Do NOT make medical diagnoses.
 
 Respond ONLY with this exact JSON shape (no markdown fences):
@@ -151,16 +151,16 @@ function buildFallback(quiz) {
     },
     faceBox: { x: 0.5, y: 0.4, w: 0.55, h: 0.6 },
     concerns: [
-      { id: 'redness', score: 45, regions: defaultRegion(0.35, 0.48).concat(defaultRegion(0.65, 0.48)) },
-      { id: 'dark_circles', score: 40, regions: defaultRegion(0.38, 0.4).concat(defaultRegion(0.62, 0.4)) },
-      { id: 'hydration', score: 55, regions: defaultRegion(0.5, 0.5) },
-      { id: 'sagging', score: 30, regions: defaultRegion(0.5, 0.62) },
-      { id: 'uniformness', score: 50, regions: defaultRegion(0.5, 0.5) },
-      { id: 'pigmentation', score: 35, regions: defaultRegion(0.45, 0.52) },
-      { id: 'lines', score: 35, regions: defaultRegion(0.5, 0.32) },
-      { id: 'pores', score: 50, regions: defaultRegion(0.5, 0.5) },
-      { id: 'breakouts', score: 35, regions: defaultRegion(0.45, 0.52) },
-      { id: 'under_eye_puffiness', score: 40, regions: defaultRegion(0.38, 0.42).concat(defaultRegion(0.62, 0.42)) }
+      { id: 'redness', score: 75, regions: defaultRegion(0.35, 0.48).concat(defaultRegion(0.65, 0.48)) },
+      { id: 'dark_circles', score: 70, regions: defaultRegion(0.38, 0.4).concat(defaultRegion(0.62, 0.4)) },
+      { id: 'hydration', score: 65, regions: defaultRegion(0.5, 0.5) },
+      { id: 'sagging', score: 88, regions: defaultRegion(0.5, 0.62) },
+      { id: 'uniformness', score: 78, regions: defaultRegion(0.5, 0.5) },
+      { id: 'pigmentation', score: 82, regions: defaultRegion(0.45, 0.52) },
+      { id: 'lines', score: 85, regions: defaultRegion(0.5, 0.32) },
+      { id: 'pores', score: 72, regions: defaultRegion(0.5, 0.5) },
+      { id: 'breakouts', score: 88, regions: defaultRegion(0.45, 0.52) },
+      { id: 'under_eye_puffiness', score: 80, regions: defaultRegion(0.38, 0.42).concat(defaultRegion(0.62, 0.42)) }
     ]
   };
 }
