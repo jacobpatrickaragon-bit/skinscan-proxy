@@ -8,10 +8,10 @@ export default async function handler(req, res) {
   // Allow requests from your Shopify store domain
   // Replace 'your-store.myshopify.com' with your actual store URL
   const allowedOrigins = [
-    'https://your-store.myshopify.com',
-    'https://your-custom-domain.com',
-    'http://localhost:3000', // for local testing
-  ];
+  'https://aragon-aesthetics-and-wellness.myshopify.com/',  // ← Replace with YOUR store URL
+  'https://your-custom-domain.com',                 // ← If you have a custom domain
+  'http://localhost:3000',                          // ← Keep this for testing
+];
 
   const origin = req.headers.origin || '';
   if (allowedOrigins.some(o => origin.includes(o.replace('https://', '').replace('http://', '')))) {
