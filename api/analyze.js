@@ -129,7 +129,7 @@ Respond ONLY with this exact JSON shape (no markdown fences):
   ]
 }
 
-CRITICAL: All 10 concern IDs MUST appear in the array. Coordinates must be normalized 0-1 of the whole image. Use small rx/ry values (0.02-0.15) for the region size.`;
+CRITICAL: All 10 concern IDs MUST appear in the array. Coordinates must be normalized 0-1 of the whole image. Use SMALL rx/ry values: 0.02-0.05 for small spots (single pimple/dark spot), 0.05-0.08 for medium areas (cheek, under-eye), MAX 0.10 for large diffuse areas. NEVER use rx/ry > 0.10 — masks should appear as targeted highlights, not face-covering overlays.`;
 }
 
 function buildFallback(quiz) {
